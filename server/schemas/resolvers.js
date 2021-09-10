@@ -1,25 +1,25 @@
-const { Thought } = require('../models');
+const { Thought, Restaurant } = require('../models');
 
 const resolvers = {
   Query: {
-    thoughts: async () => {
-      return Thought.find().sort({ createdAt: -1 });
+    restaurants: async () => {
+      return Restaurant.find().sort({ createdAt: -1 });
     },
 
-    thought: async (parent, { thoughtId }) => {
-      return Thought.findOne({ _id: thoughtId });
+    restaurant: async (parent, { restaurantId }) => {
+      return Restaurant.findOne({ _id: restaurantId });
     },
   },
 
   Mutation: {
-    addThought: async (parent, { thoughtText, thoughtAuthor }) => {
-      return Thought.create({ thoughtText, thoughtAuthor });
+    addRestaurant: async (parent, { name, street, city, state, zip }) => {
+      return Restaurant.create({ name, street, city, state, zip });
     },
-    addComment: async (parent, { thoughtId, commentText }) => {
-      return Thought.findOneAndUpdate(
-        { _id: thoughtId },
+    addReview: async (parent, { restaurantId, reviewText, author, rating }) => {
+      return Restaurant.findOneAndUpdate(
+        { _id: restaurantId },
         {
-          $addToSet: { comments: { commentText } },
+          $addToSet: { reviews: { reviewText, author, rating } },
         },
         {
           new: true,
@@ -27,13 +27,13 @@ const resolvers = {
         }
       );
     },
-    removeThought: async (parent, { thoughtId }) => {
-      return Thought.findOneAndDelete({ _id: thoughtId });
+    removeRestaurant: async (parent, { restaurantId }) => {
+      return Restaurant.findOneAndDelete({ _id: restarauntId });
     },
-    removeComment: async (parent, { thoughtId, commentId }) => {
-      return Thought.findOneAndUpdate(
-        { _id: thoughtId },
-        { $pull: { comments: { _id: commentId } } },
+    removeComment: async (parent, { restauranttId, reviewId }) => {
+      return Restaurant.findOneAndUpdate(
+        { _id: restauranttId },
+        { $pull: { reviews: { _id: reviewId } } },
         { new: true }
       );
     },

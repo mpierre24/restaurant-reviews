@@ -27,7 +27,7 @@ const typeDefs = gql`
 
   type Mutation {
     addRestaurant(name: String!, street: String!, city: String!,state: String!,zip: String!): Restaurant
-    addReview(restaurantId: ID!, reviewText: String!): Restaurant
+    addReview(restaurantId: ID!, reviewText: String!,author:String,rating:Number): Restaurant
     removeRestaurant(restaurantId: ID!): Restaurant
     removeReview(restaurantId: ID!, reviewId: ID!): Restaurant
   }
