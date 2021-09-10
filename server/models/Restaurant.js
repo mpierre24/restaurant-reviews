@@ -1,15 +1,30 @@
 const { Schema, model } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
 
-const thoughtSchema = new Schema({
-  thoughtText: {
+const restaurantSchema = new Schema({
+  name: {
     type: String,
-    required: 'You need to leave a thought!',
+    required: 'You need to leave a restaurant!',
     minlength: 1,
     maxlength: 280,
     trim: true,
   },
-  thoughtAuthor: {
+  street: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  city: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  state: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  zip: {
     type: String,
     required: true,
     trim: true,
@@ -19,13 +34,17 @@ const thoughtSchema = new Schema({
     default: Date.now,
     get: (timestamp) => dateFormat(timestamp),
   },
-  comments: [
+  reviews: [
     {
-      commentText: {
+      reviewText: {
         type: String,
         required: true,
         minlength: 1,
         maxlength: 280,
+      },
+      rating: {
+        type: Number,
+
       },
       createdAt: {
         type: Date,
@@ -36,6 +55,6 @@ const thoughtSchema = new Schema({
   ],
 });
 
-const Thought = model('Thought', thoughtSchema);
+const Restaurant = model('restaurant', restaurantSchema);
 
-module.exports = Thought;
+module.exports = Restaurant;
