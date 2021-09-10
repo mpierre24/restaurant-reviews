@@ -16,20 +16,20 @@ const typeDefs = gql`
     _id: ID
     reviewText: String
     author: String
-    rating: Number
+    rating: Int
     createdAt: String
   }
 
   type Query {
-    restaurants():[Restaurant]
+    restaurants:[Restaurant]
     restaurant(restaurantId: ID!): Restaurant
   }
 
   type Mutation {
-    addRestaurant(name: String!, street: String!, city: String!,state: String!,zip: String!): Restaurant
-    addReview(restaurantId: ID!, reviewText: String!,author:String,rating:Number): Restaurant
-    removeRestaurant(restaurantId: ID!): Restaurant
-    removeReview(restaurantId: ID!, reviewId: ID!): Restaurant
+    addRestaurant(name: String!,street: String!, city: String!,state: String!,zip: String!): Restaurant
+    addReview(restaurantId: ID!,reviewText: String!,author:String,rating:Int): Restaurant
+    removeRestaurant(restaurantId:ID!): Restaurant
+    removeReview(restaurantId: ID!,reviewId: ID!): Restaurant
   }
 `;
 

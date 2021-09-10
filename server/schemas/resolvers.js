@@ -28,11 +28,11 @@ const resolvers = {
       );
     },
     removeRestaurant: async (parent, { restaurantId }) => {
-      return Restaurant.findOneAndDelete({ _id: restarauntId });
+      return Restaurant.findOneAndDelete({ _id: restaurantId });
     },
-    removeComment: async (parent, { restauranttId, reviewId }) => {
+    removeReview: async (parent, { restaurantId, reviewId }) => {
       return Restaurant.findOneAndUpdate(
-        { _id: restauranttId },
+        { _id: restaurantId },
         { $pull: { reviews: { _id: reviewId } } },
         { new: true }
       );
