@@ -42,6 +42,10 @@ const restaurantSchema = new Schema({
         minlength: 1,
         maxlength: 280,
       },
+      author: {
+        type: String,
+        trim: true,
+      },
       rating: {
         type: Number,
 

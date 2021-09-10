@@ -1,10 +1,10 @@
 const db = require('../config/connection');
-const { Thought } = require('../models');
-const thoughtSeeds = require('./thoughtSeeds.json');
+const { Restaurant } = require('../models');
+const restaurantSeeds = require('./restaurantSeeds.json');
 
 db.once('open', async () => {
-  await Thought.deleteMany({});
-  await Thought.create(thoughtSeeds);
+  await Restaurant.deleteMany({});
+  await Restaurant.create(restaurantSeeds);
 
   console.log('all done!');
   process.exit(0);
