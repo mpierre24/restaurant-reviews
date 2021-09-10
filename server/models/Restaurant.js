@@ -4,7 +4,7 @@ const dateFormat = require('../utils/dateFormat');
 const restaurantSchema = new Schema({
   name: {
     type: String,
-    required: 'You need to leave a restaurant!',
+    required: 'restaurant name required',
     minlength: 1,
     maxlength: 280,
     trim: true,
